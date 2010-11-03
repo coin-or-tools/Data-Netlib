@@ -1,0 +1,7 @@
+datadir=@ABSBUILDDIR@
+
+Name: Netlib
+Description: Netlib models
+Version: @PACKAGE_VERSION@
+Libs:
+Cflags:

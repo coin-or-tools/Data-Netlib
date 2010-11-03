@@ -1,0 +1,105 @@
+* text=auto !eol
+/25fv47.mps.gz -text svneol=unset#application/x-gzip
+/80bau3b.mps.gz -text svneol=unset#application/x-gzip
+/AUTHORS -text
+/LICENSE -text
+/README -text
+/adlittle.mps.gz -text svneol=unset#application/x-gzip
+/afiro.mps.gz -text svneol=unset#application/x-gzip
+/agg.mps.gz -text svneol=unset#application/x-gzip
+/agg2.mps.gz -text svneol=unset#application/x-gzip
+/agg3.mps.gz -text svneol=unset#application/x-gzip
+/bandm.mps.gz -text svneol=unset#application/x-gzip
+/beaconfd.mps.gz -text svneol=unset#application/x-gzip
+/blend.mps.gz -text svneol=unset#application/x-gzip
+/bnl1.mps.gz -text svneol=unset#application/x-gzip
+/bnl2.mps.gz -text svneol=unset#application/x-gzip
+/boeing1.mps.gz -text svneol=unset#application/x-gzip
+/boeing2.mps.gz -text svneol=unset#application/x-gzip
+/bore3d.mps.gz -text svneol=unset#application/x-gzip
+/brandy.mps.gz -text svneol=unset#application/x-gzip
+/capri.mps.gz -text svneol=unset#application/x-gzip
+/coindatanetlib-uninstalled.pc.in -text
+/coindatanetlib.pc.in -text
+/config.guess -text
+/config.sub -text
+/configure -text
+/configure.ac -text
+/cycle.mps.gz -text svneol=unset#application/x-gzip
+/czprob.mps.gz -text svneol=unset#application/x-gzip
+/d2q06c.mps.gz -text svneol=unset#application/x-gzip
+/d6cube.mps.gz -text svneol=unset#application/x-gzip
+/degen2.mps.gz -text svneol=unset#application/x-gzip
+/degen3.mps.gz -text svneol=unset#application/x-gzip
+/depcomp -text
+/dfl001.mps.gz -text svneol=unset#application/x-gzip
+/e226.mps.gz -text svneol=unset#application/x-gzip
+/etamacro.mps.gz -text svneol=unset#application/x-gzip
+/fffff800.mps.gz -text svneol=unset#application/x-gzip
+/finnis.mps.gz -text svneol=unset#application/x-gzip
+/fit1d.mps.gz -text svneol=unset#application/x-gzip
+/fit1p.mps.gz -text svneol=unset#application/x-gzip
+/fit2d.mps.gz -text svneol=unset#application/x-gzip
+/fit2p.mps.gz -text svneol=unset#application/x-gzip
+/forplan.mps.gz -text svneol=unset#application/x-gzip
+/ganges.mps.gz -text svneol=unset#application/x-gzip
+/gfrd-pnc.mps.gz -text svneol=unset#application/x-gzip
+/greenbea.mps.gz -text svneol=unset#application/x-gzip
+/greenbeb.mps.gz -text svneol=unset#application/x-gzip
+/grow15.mps.gz -text svneol=unset#application/x-gzip
+/grow22.mps.gz -text svneol=unset#application/x-gzip
+/grow7.mps.gz -text svneol=unset#application/x-gzip
+/install-sh -text
+/israel.mps.gz -text svneol=unset#application/x-gzip
+/kb2.mps.gz -text svneol=unset#application/x-gzip
+/lotfi.mps.gz -text svneol=unset#application/x-gzip
+/ltmain.sh -text
+/maros-r7.mps.gz -text svneol=unset#application/x-gzip
+/maros.mps.gz -text svneol=unset#application/x-gzip
+/missing -text
+/modszk1.mps.gz -text svneol=unset#application/x-gzip
+/nesm.mps.gz -text svneol=unset#application/x-gzip
+/perold.mps.gz -text svneol=unset#application/x-gzip
+/pilot.mps.gz -text svneol=unset#application/x-gzip
+/pilot4.mps.gz -text svneol=unset#application/x-gzip
+/pilot87.mps.gz -text svneol=unset#application/x-gzip
+/pilotnov.mps.gz -text svneol=unset#application/x-gzip
+/recipe.mps.gz -text svneol=unset#application/x-gzip
+/sc105.mps.gz -text svneol=unset#application/x-gzip
+/sc205.mps.gz -text svneol=unset#application/x-gzip
+/sc50a.mps.gz -text svneol=unset#application/x-gzip
+/sc50b.mps.gz -text svneol=unset#application/x-gzip
+/scagr25.mps.gz -text svneol=unset#application/x-gzip
+/scagr7.mps.gz -text svneol=unset#application/x-gzip
+/scfxm1.mps.gz -text svneol=unset#application/x-gzip
+/scfxm2.mps.gz -text svneol=unset#application/x-gzip
+/scfxm3.mps.gz -text svneol=unset#application/x-gzip
+/scorpion.mps.gz -text svneol=unset#application/x-gzip
+/scrs8.mps.gz -text svneol=unset#application/x-gzip
+/scsd1.mps.gz -text svneol=unset#application/x-gzip
+/scsd6.mps.gz -text svneol=unset#application/x-gzip
+/scsd8.mps.gz -text svneol=unset#application/x-gzip
+/sctap1.mps.gz -text svneol=unset#application/x-gzip
+/sctap2.mps.gz -text svneol=unset#application/x-gzip
+/sctap3.mps.gz -text svneol=unset#application/x-gzip
+/seba.mps.gz -text svneol=unset#application/x-gzip
+/share1b.mps.gz -text svneol=unset#application/x-gzip
+/share2b.mps.gz -text svneol=unset#application/x-gzip
+/shell.mps.gz -text svneol=unset#application/x-gzip
+/ship04l.mps.gz -text svneol=unset#application/x-gzip
+/ship04s.mps.gz -text svneol=unset#application/x-gzip
+/ship08l.mps.gz -text svneol=unset#application/x-gzip
+/ship08s.mps.gz -text svneol=unset#application/x-gzip
+/ship12l.mps.gz -text svneol=unset#application/x-gzip
+/ship12s.mps.gz -text svneol=unset#application/x-gzip
+/sierra.mps.gz -text svneol=unset#application/x-gzip
+/stair.mps.gz -text svneol=unset#application/x-gzip
+/standata.mps.gz -text svneol=unset#application/x-gzip
+/standgub.mps.gz -text svneol=unset#application/x-gzip
+/standmps.mps.gz -text svneol=unset#application/x-gzip
+/stocfor1.mps.gz -text svneol=unset#application/x-gzip
+/stocfor2.mps.gz -text svneol=unset#application/x-gzip
+/tuff.mps.gz -text svneol=unset#application/x-gzip
+/vtpbase.mps.gz -text svneol=unset#application/x-gzip
+/wood1p.mps.gz -text svneol=unset#application/x-gzip
+/woodw.mps.gz -text svneol=unset#application/x-gzip

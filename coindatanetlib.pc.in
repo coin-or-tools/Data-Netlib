@@ -1,0 +1,8 @@
+prefix=@prefix@
+datadir=@datadir@/coin/Data/Netlib
+
+Name: Netlib
+Description: Netlib models
+Version: @PACKAGE_VERSION@
+Libs:
+Cflags:
