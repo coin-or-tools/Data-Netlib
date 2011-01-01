@@ -39,6 +39,9 @@ AC_COIN_PROJECTDIR_INIT(DataNetlib)
 # Initialize automake
 AC_COIN_INIT_AUTOMAKE
 
+# check if ZLIB is available, in which case we do not decompress
+AC_COIN_CHECK_GNU_ZLIB
+
 #############################################################################
 #Find out what the data files are and create links if this is a VPATH config#
 #############################################################################
