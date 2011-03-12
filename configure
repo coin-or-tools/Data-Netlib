@@ -1368,11 +1368,33 @@ fi
 # that we are in a project main directory
 coin_projectdir=yes
 
-# Set the project's version number
+# Set the project's version numbers
 
 
 cat >>confdefs.h <<_ACEOF
 #define DATANETLIB_VERSION "$PACKAGE_VERSION"
+_ACEOF
+
+
+  coin_majorver=`echo $PACKAGE_VERSION | sed -n -e 's/^\([0-9]*\).*/\1/gp'`
+  coin_minorver=`echo $PACKAGE_VERSION | sed -n -e 's/^[0-9]*\.\([0-9]*\).*/\1/gp'`
+  coin_releasever=`echo $PACKAGE_VERSION | sed -n -e 's/^[0-9]*\.[0-9]*\.\([0-9]*\).*/\1/gp'`
+  if test "x$coin_majorver" = x ; then coin_majorver=9999 ; fi
+  if test "x$coin_minorver" = x ; then coin_minorver=9999 ; fi
+  if test "x$coin_releasever" = x ; then coin_releasever=9999 ; fi
+
+cat >>confdefs.h <<_ACEOF
+#define DATANETLIB_VERSION_MAJOR $coin_majorver
+_ACEOF
+
+
+cat >>confdefs.h <<_ACEOF
+#define DATANETLIB_VERSION_MINOR $coin_minorver
+_ACEOF
+
+
+cat >>confdefs.h <<_ACEOF
+#define DATANETLIB_VERSION_RELEASE $coin_releasever
 _ACEOF
 
 
