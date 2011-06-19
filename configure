@@ -318,7 +318,7 @@ ac_includes_default="\
 # include <unistd.h>
 #endif"
 
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS ALWAYS_FALSE_TRUE ALWAYS_FALSE_FALSE have_svnversion DATANETLIB_SVN_REV EGREP INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM mkdir_p AWK SET_MAKE am__leading_dot AMTAR am__tar am__untar MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT LIBTOOLM4 have_autoconf have_automake have_svn BUILDTOOLSDIR AUX_DIR abs_source_dir abs_lib_dir abs_include_dir abs_bin_dir HAVE_EXTERNALS_TRUE HAVE_EXTERNALS_FALSE CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT DEPDIR am__include am__quote AMDEP_TRUE AMDEP_FALSE AMDEPBACKSLASH CCDEPMODE am__fastdepCC_TRUE am__fastdepCC_FALSE CPP COIN_HAS_ZLIB_TRUE COIN_HAS_ZLIB_FALSE build build_cpu build_vendor build_os LN_S EXAMPLE_UNCOMPRESSED_FILES EXAMPLE_FILES EXAMPLE_CLEAN_FILES ABSBUILDDIR LIBEXT VPATH_DISTCLEANFILES LIBOBJS LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS ALWAYS_FALSE_TRUE ALWAYS_FALSE_FALSE have_svnversion DATANETLIB_SVN_REV EGREP LN_S INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM mkdir_p AWK SET_MAKE am__leading_dot AMTAR am__tar am__untar MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT LIBTOOLM4 have_autoconf have_automake have_svn BUILDTOOLSDIR AUX_DIR abs_source_dir abs_lib_dir abs_include_dir abs_bin_dir HAVE_EXTERNALS_TRUE HAVE_EXTERNALS_FALSE CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT DEPDIR am__include am__quote AMDEP_TRUE AMDEP_FALSE AMDEPBACKSLASH CCDEPMODE am__fastdepCC_TRUE am__fastdepCC_FALSE CPP COIN_HAS_ZLIB_TRUE COIN_HAS_ZLIB_FALSE build build_cpu build_vendor build_os EXAMPLE_UNCOMPRESSED_FILES EXAMPLE_FILES EXAMPLE_CLEAN_FILES ABSBUILDDIR LIBEXT VPATH_DISTCLEANFILES LIBOBJS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -1368,19 +1368,44 @@ fi
 # that we are in a project main directory
 coin_projectdir=yes
 
-# Set the project's version number
-if test "xDataNetlib" != x; then
+# Set the project's version numbers
+
 
 cat >>confdefs.h <<_ACEOF
 #define DATANETLIB_VERSION "$PACKAGE_VERSION"
 _ACEOF
 
-fi
 
-# Set the project's SVN revision number. The complicated sed expression
-# (made worse by quadrigraphs) ensures that things like 4123:4168MS end up
-# as a single number.
-# Extract the first word of "svnversion", so it can be a program name with args.
+  coin_majorver=`echo $PACKAGE_VERSION | sed -n -e 's/^\([0-9]*\).*/\1/gp'`
+  coin_minorver=`echo $PACKAGE_VERSION | sed -n -e 's/^[0-9]*\.\([0-9]*\).*/\1/gp'`
+  coin_releasever=`echo $PACKAGE_VERSION | sed -n -e 's/^[0-9]*\.[0-9]*\.\([0-9]*\).*/\1/gp'`
+  if test "x$coin_majorver" = x ; then coin_majorver=9999 ; fi
+  if test "x$coin_minorver" = x ; then coin_minorver=9999 ; fi
+  if test "x$coin_releasever" = x ; then coin_releasever=9999 ; fi
+
+cat >>confdefs.h <<_ACEOF
+#define DATANETLIB_VERSION_MAJOR $coin_majorver
+_ACEOF
+
+
+cat >>confdefs.h <<_ACEOF
+#define DATANETLIB_VERSION_MINOR $coin_minorver
+_ACEOF
+
+
+cat >>confdefs.h <<_ACEOF
+#define DATANETLIB_VERSION_RELEASE $coin_releasever
+_ACEOF
+
+
+  # We use the following variable to have a string with the upper case
+  # version of the project name
+  COIN_PRJCT=DATANETLIB
+
+  # Set the project's SVN revision number. The complicated sed expression
+  # (made worse by quadrigraphs) ensures that things like 4123:4168MS end up
+  # as a single number.
+  # Extract the first word of "svnversion", so it can be a program name with args.
 set dummy svnversion; ac_word=$2
 echo "$as_me:$LINENO: checking for $ac_word" >&5
 echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
@@ -1416,20 +1441,23 @@ else
 echo "${ECHO_T}no" >&6
 fi
 
-if test "x$have_svnversion" = xyes && test "xDataNetlib" != x; then
+  if test "x$have_svnversion" = xyes; then
 
-  svn_rev_tmp=`cd $srcdir/$coin_has_datanetlib ; svnversion`
-  DATANETLIB_SVN_REV=`echo $svn_rev_tmp | sed -n -e 's/^[0-9]*://' -e 's/\([0-9]\)[^0-9]*$/\1/p'`
-  if test $DATANETLIB_SVN_REV != exported; then
+    svn_rev_tmp=`LANG=en_EN svnversion $srcdir 2>/dev/null`
+    if test "x$svn_rev_tmp" != xexported -a "x$svn_rev_tmp" != x; then
+      DATANETLIB_SVN_REV=`echo $svn_rev_tmp | sed -n -e 's/^[0-9]*://' -e 's/\([0-9]\)[^0-9]*$/\1/p'`
 
 cat >>confdefs.h <<_ACEOF
 #define DATANETLIB_SVN_REV $DATANETLIB_SVN_REV
 _ACEOF
 
+    fi
   fi
-fi
+
+
 
 # Capture libtool library version, if given.
+
 
 
 
@@ -1452,6 +1480,17 @@ echo "$as_me:$LINENO: result: $ac_cv_prog_egrep" >&5
 echo "${ECHO_T}$ac_cv_prog_egrep" >&6
  EGREP=$ac_cv_prog_egrep
 
+
+echo "$as_me:$LINENO: checking whether ln -s works" >&5
+echo $ECHO_N "checking whether ln -s works... $ECHO_C" >&6
+LN_S=$as_ln_s
+if test "$LN_S" = "ln -s"; then
+  echo "$as_me:$LINENO: result: yes" >&5
+echo "${ECHO_T}yes" >&6
+else
+  echo "$as_me:$LINENO: result: no, using $LN_S" >&5
+echo "${ECHO_T}no, using $LN_S" >&6
+fi
 
 am__api_version="1.9"
 ac_aux_dir=
@@ -1739,6 +1778,7 @@ else
   am__leading_dot=_
 fi
 rmdir .tst 2>/dev/null
+
 
 
 
@@ -2166,8 +2206,8 @@ echo "$as_me: error: I cannot find the libtool.m4 file." >&2;}
 fi
 
 
-  # Check if we have an Externals file
-  if test -r $srcdir/Externals; then
+  # Check if we have an Dependencies file
+  if test -r $srcdir/Dependencies; then
     coin_have_externals=yes
   fi
   # Check if subversion is installed and understands https
@@ -2240,11 +2280,16 @@ echo "${ECHO_T}$ac_cv_svn_understands_https" >&6
       else
         { { echo "$as_me:$LINENO: error: Cannot find the BuildTools directory" >&5
 echo "$as_me: error: Cannot find the BuildTools directory" >&2;}
-   { (exit 1); exit 1; }; }
+   { (exit better disable maintainer mode.); exit better disable maintainer mode.; }; }
       fi
     fi
   fi
 
+
+  # for running automake by make, we need to have Makemain.inc available at the place where it usually can be found during run_autotools
+  if test "$BUILDTOOLSDIR" != "$srcdir/BuildTools" ; then
+    $LN_S `cd $BUILDTOOLSDIR; pwd` "$srcdir/BuildTools"
+  fi
 
   # The following variable is set to the name of the directory where
   # the autotool scripts are located
@@ -4215,17 +4260,6 @@ echo "$as_me: error: Invalid value $enable_doscompile for --enable-doscompile.
 echo "$as_me: DOS compile style is: $enable_doscompile" >&6;}
   fi
 
-echo "$as_me:$LINENO: checking whether ln -s works" >&5
-echo $ECHO_N "checking whether ln -s works... $ECHO_C" >&6
-LN_S=$as_ln_s
-if test "$LN_S" = "ln -s"; then
-  echo "$as_me:$LINENO: result: yes" >&5
-echo "${ECHO_T}yes" >&6
-else
-  echo "$as_me:$LINENO: result: no, using $LN_S" >&5
-echo "${ECHO_T}no, using $LN_S" >&6
-fi
-
 
 
 
@@ -4352,6 +4386,10 @@ if test x$coin_skip_ac_output != xyes; then
     ABSBUILDDIR="`pwd`"
 
   fi
+
+  # On AIX, the default sed cannot deal with somewhat long sed commands executed by config.status.
+  # So we reduce the hardcoded number of commands given to sed from 48 to 5 in config.status, hoping this will suffice.
+
 
   cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -5049,6 +5087,7 @@ s,@ALWAYS_FALSE_FALSE@,$ALWAYS_FALSE_FALSE,;t t
 s,@have_svnversion@,$have_svnversion,;t t
 s,@DATANETLIB_SVN_REV@,$DATANETLIB_SVN_REV,;t t
 s,@EGREP@,$EGREP,;t t
+s,@LN_S@,$LN_S,;t t
 s,@INSTALL_PROGRAM@,$INSTALL_PROGRAM,;t t
 s,@INSTALL_SCRIPT@,$INSTALL_SCRIPT,;t t
 s,@INSTALL_DATA@,$INSTALL_DATA,;t t
@@ -5109,7 +5148,6 @@ s,@build@,$build,;t t
 s,@build_cpu@,$build_cpu,;t t
 s,@build_vendor@,$build_vendor,;t t
 s,@build_os@,$build_os,;t t
-s,@LN_S@,$LN_S,;t t
 s,@EXAMPLE_UNCOMPRESSED_FILES@,$EXAMPLE_UNCOMPRESSED_FILES,;t t
 s,@EXAMPLE_FILES@,$EXAMPLE_FILES,;t t
 s,@EXAMPLE_CLEAN_FILES@,$EXAMPLE_CLEAN_FILES,;t t
@@ -5567,6 +5605,16 @@ chmod +x $CONFIG_STATUS
 ac_clean_files=$ac_clean_files_save
 
 
+    case $build in
+      *-aix*)
+        { echo "$as_me:$LINENO: patching config.status to reduce ac_max_sed_lines to 5" >&5
+echo "$as_me: patching config.status to reduce ac_max_sed_lines to 5" >&6;}
+        sed -e 's/ac_max_sed_lines=48/ac_max_sed_lines=5/g' config.status > config.status.tmp
+        mv config.status.tmp config.status
+      ;;
+    esac
+
+
 # configure is writing to config.log, and then calls config.status.
 # config.status does its own redirection, appending to config.log.
 # Unfortunately, on DOS this fails, as config.log is still kept open
@@ -5643,6 +5691,8 @@ echo "$as_me: error: cannot create directory $dir" >&2;}
     done
   fi
 
+  { echo "$as_me:$LINENO: In case of trouble, first consult the troubleshooting page at https://projects.coin-or.org/BuildTools/wiki/user-troubleshooting" >&5
+echo "$as_me: In case of trouble, first consult the troubleshooting page at https://projects.coin-or.org/BuildTools/wiki/user-troubleshooting" >&6;}
   if test x$coin_projectdir = xyes; then
     { echo "$as_me:$LINENO: Configuration of $PACKAGE_NAME successful" >&5
 echo "$as_me: Configuration of $PACKAGE_NAME successful" >&6;}
