@@ -565,6 +565,9 @@ skipunzip:
 
 .PHONY: uncompress unzip skipunzip
 
+test:
+	@echo "No test available."
+
 install-doc: $(DocFiles)
 	test -z "$(DocInstallDir)" || $(mkdir_p) "$(DESTDIR)$(DocInstallDir)"
 	for file in $(DocFiles); do \

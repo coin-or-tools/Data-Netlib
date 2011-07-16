@@ -48,6 +48,9 @@ pkgconfiglib_DATA = coindatanetlib.pc
 
 .PHONY: uncompress unzip skipunzip
 
+test:
+	@echo "No test available."
+
 ########################################################################
 #                  List files that should be cleaned                   #
 ########################################################################
