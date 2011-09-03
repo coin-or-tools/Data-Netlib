@@ -861,7 +861,7 @@ Optional Features:
   --enable-FEATURE[=ARG]  include FEATURE [ARG=yes]
   --enable-maintainer-mode  enable make rules and dependencies not useful
 			  (and sometimes confusing) to the casual installer
-  --enable-gnu-packages   compile with GNU packages (disabled by default)
+  --disable-zlib          do not compile with compression library zlib
   --disable-dependency-tracking  speeds up one-time build
   --enable-dependency-tracking   do not reject slow dependency extractors
   --enable-doscompile     Under Cygwin, compile so that executables run under
@@ -2331,14 +2331,6 @@ fi
 
 
 # check if ZLIB is available, in which case we do not decompress
-# Check whether --enable-gnu-packages or --disable-gnu-packages was given.
-if test "${enable_gnu_packages+set}" = set; then
-  enableval="$enable_gnu_packages"
-  coin_enable_gnu=$enableval
-else
-  coin_enable_gnu=no
-fi;
-
 DEPDIR="${am__leading_dot}deps"
 
           ac_config_commands="$ac_config_commands depfiles"
@@ -3924,7 +3916,16 @@ done
 
 
 coin_has_zlib=no
-if test $coin_enable_gnu = yes; then
+
+# Check whether --enable-zlib or --disable-zlib was given.
+if test "${enable_zlib+set}" = set; then
+  enableval="$enable_zlib"
+  coin_enable_zlib=$enableval
+else
+  coin_enable_zlib=yes
+fi;
+
+if test $coin_enable_zlib = yes; then
   #if test x"" = x; then
 #  hdr="#include <zlib.h>"
 #else
@@ -4149,8 +4150,7 @@ fi
 echo "$as_me:$LINENO: result: $ac_cv_lib_z_gzopen" >&5
 echo "${ECHO_T}$ac_cv_lib_z_gzopen" >&6
 if test $ac_cv_lib_z_gzopen = yes; then
-
-                 :
+  :
 else
   coin_has_zlib=no
 fi
@@ -4158,6 +4158,7 @@ fi
   fi
 
   if test $coin_has_zlib = yes; then
+
 
 cat >>confdefs.h <<\_ACEOF
 #define COIN_HAS_ZLIB 1
