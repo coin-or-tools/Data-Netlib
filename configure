@@ -4277,6 +4277,7 @@ if test $coin_vpath_config = yes; then
     lnkcmd=cp
   fi
   case "$CC" in
+    clang* ) ;;
     cl* | */cl* | CL* | */CL* | icl* | */icl* | ICL* | */ICL*)
       lnkcmd=cp ;;
   esac
@@ -4337,6 +4338,7 @@ if test "$enable_doscompile" = mingw; then
   coin_link_input_cmd=cp
 fi
 case "$CC" in
+  clang* ) ;;
   cl* | */cl* | CL* | */CL* | icl* | */icl* | ICL* | */ICL*)
     coin_link_input_cmd=cp ;;
 esac
@@ -4350,6 +4352,8 @@ if test x$coin_skip_ac_output != xyes; then
   # library extension
 
   case "$CC" in
+    clang* )
+         LIBEXT=a ;;
     cl* | */cl* | CL* | */CL* | icl* | */icl* | ICL* | */ICL*)
          LIBEXT=lib ;;
       *) LIBEXT=a ;;
