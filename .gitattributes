@@ -1,9 +1,6 @@
 * text=auto !eol
 /25fv47.mps.gz -text svneol=unset#application/x-gzip
 /80bau3b.mps.gz -text svneol=unset#application/x-gzip
-/AUTHORS -text
-/LICENSE -text
-/README -text
 /adlittle.mps.gz -text svneol=unset#application/x-gzip
 /afiro.mps.gz -text svneol=unset#application/x-gzip
 /agg.mps.gz -text svneol=unset#application/x-gzip

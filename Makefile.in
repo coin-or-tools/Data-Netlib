@@ -77,12 +77,11 @@ am__vpath_adj = case $$p in \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
-am__installdirs = "$(DESTDIR)$(coindocdir)" "$(DESTDIR)$(datacoindir)" \
+am__installdirs = "$(DESTDIR)$(datacoindir)" \
 	"$(DESTDIR)$(pkgconfiglibdir)"
-coindocDATA_INSTALL = $(INSTALL_DATA)
 datacoinDATA_INSTALL = $(INSTALL_DATA)
 pkgconfiglibDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(coindoc_DATA) $(datacoin_DATA) $(pkgconfiglib_DATA)
+DATA = $(datacoin_DATA) $(pkgconfiglib_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 distdir = $(PACKAGE)-$(VERSION)
 top_distdir = $(distdir)
@@ -202,12 +201,10 @@ AUTOMAKE_OPTIONS = foreign
 ########################################################################
 #                List files that should be distributed                 #
 ########################################################################
-EXTRA_DIST = $(EXAMPLE_FILES) README AUTHORS LICENSE $(am__append_1)
+EXTRA_DIST = $(EXAMPLE_FILES) $(am__append_1)
 datacoindir = $(datadir)/coin/Data/Netlib
 @COIN_HAS_ZLIB_FALSE@datacoin_DATA = $(EXAMPLE_UNCOMPRESSED_FILES)
 @COIN_HAS_ZLIB_TRUE@datacoin_DATA = $(EXAMPLE_FILES)
-coindocdir = $(datadir)/coin/doc/Data/Netlib
-coindoc_DATA = README AUTHORS LICENSE
 pkgconfiglibdir = $(libdir)/pkgconfig
 pkgconfiglib_DATA = coindatanetlib.pc
 
@@ -260,23 +257,6 @@ coindatanetlib.pc: $(top_builddir)/config.status $(srcdir)/coindatanetlib.pc.in
 coindatanetlib-uninstalled.pc: $(top_builddir)/config.status $(srcdir)/coindatanetlib-uninstalled.pc.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 uninstall-info-am:
-install-coindocDATA: $(coindoc_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(coindocdir)" || $(mkdir_p) "$(DESTDIR)$(coindocdir)"
-	@list='$(coindoc_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(coindocDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(coindocdir)/$$f'"; \
-	  $(coindocDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(coindocdir)/$$f"; \
-	done
-
-uninstall-coindocDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(coindoc_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(coindocdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(coindocdir)/$$f"; \
-	done
 install-datacoinDATA: $(datacoin_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(datacoindir)" || $(mkdir_p) "$(DESTDIR)$(datacoindir)"
@@ -449,7 +429,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(coindocdir)" "$(DESTDIR)$(datacoindir)" "$(DESTDIR)$(pkgconfiglibdir)"; do \
+	for dir in "$(DESTDIR)$(datacoindir)" "$(DESTDIR)$(pkgconfiglibdir)"; do \
 	  test -z "$$dir" || $(mkdir_p) "$$dir"; \
 	done
 install: install-am
@@ -497,8 +477,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-coindocDATA install-datacoinDATA \
-	install-pkgconfiglibDATA
+install-data-am: install-datacoinDATA install-pkgconfiglibDATA
 
 install-exec-am:
 
@@ -526,20 +505,19 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-coindocDATA uninstall-datacoinDATA \
-	uninstall-info-am uninstall-pkgconfiglibDATA
+uninstall-am: uninstall-datacoinDATA uninstall-info-am \
+	uninstall-pkgconfiglibDATA
 
 .PHONY: all all-am am--refresh check check-am clean clean-generic dist \
 	dist-all dist-bzip2 dist-gzip dist-shar dist-tarZ dist-zip \
 	distcheck distclean distclean-generic distcleancheck distdir \
 	distuninstallcheck dvi dvi-am html html-am info info-am \
-	install install-am install-coindocDATA install-data \
-	install-data-am install-datacoinDATA install-exec \
-	install-exec-am install-info install-info-am install-man \
-	install-pkgconfiglibDATA install-strip installcheck \
-	installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-generic pdf \
-	pdf-am ps ps-am uninstall uninstall-am uninstall-coindocDATA \
+	install install-am install-data install-data-am \
+	install-datacoinDATA install-exec install-exec-am install-info \
+	install-info-am install-man install-pkgconfiglibDATA \
+	install-strip installcheck installcheck-am installdirs \
+	maintainer-clean maintainer-clean-generic mostlyclean \
+	mostlyclean-generic pdf pdf-am ps ps-am uninstall uninstall-am \
 	uninstall-datacoinDATA uninstall-info-am \
 	uninstall-pkgconfiglibDATA
 

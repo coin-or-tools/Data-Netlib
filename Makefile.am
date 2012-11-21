@@ -12,7 +12,7 @@ AUTOMAKE_OPTIONS = foreign
 #                List files that should be distributed                 #
 ########################################################################
 
-EXTRA_DIST = $(EXAMPLE_FILES) README AUTHORS LICENSE
+EXTRA_DIST = $(EXAMPLE_FILES)
 
 datacoindir = $(datadir)/coin/Data/Netlib
 
@@ -39,9 +39,6 @@ $(EXAMPLE_UNCOMPRESSED_FILES):
 
 skipunzip:
 	echo "Skipping decompression (package compiled with --enable-gnu-packages)"
-
-coindocdir = $(datadir)/coin/doc/Data/Netlib
-coindoc_DATA = README AUTHORS LICENSE
 
 pkgconfiglibdir = $(libdir)/pkgconfig
 pkgconfiglib_DATA = coindatanetlib.pc
