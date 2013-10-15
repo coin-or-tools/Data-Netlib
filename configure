@@ -864,11 +864,8 @@ Optional Features:
   --disable-zlib          do not compile with compression library zlib
   --disable-dependency-tracking  speeds up one-time build
   --enable-dependency-tracking   do not reject slow dependency extractors
-  --enable-doscompile     Under Cygwin, compile so that executables run under
-                          DOS. Set to mingw to use gcc/g++/ld with
-                          -mno-cygwin. Set to msvc to use cl/link (or
-                          icl/link). Default when mentioned: mingw. Default
-                          when not mentioned: disabled.
+
+  --enable-msvc           Prefer (i)cl/ifort/link over GNU on MinGW/Cygwin.
 
 Some influential environment variables:
   CC          C compiler command
@@ -1457,7 +1454,7 @@ _ACEOF
 
 
 # Capture libtool library version, if given.
-coin_libversion=2:4:1
+ coin_libversion=2:4:1
 
 
 
@@ -4228,38 +4225,39 @@ build_os=`echo $ac_cv_build | sed 's/^\([^-]*\)-\([^-]*\)-\(.*\)$/\3/'`
 
 
 
- # Check whether --enable-doscompile or --disable-doscompile was given.
+
+  # for backward compatibility
+  # Check whether --enable-doscompile or --disable-doscompile was given.
 if test "${enable_doscompile+set}" = set; then
   enableval="$enable_doscompile"
-  if test "$enable_doscompile" != no; then
-     case $build in
-       *-cygwin* | *-mingw*) ;;
-       *) { { echo "$as_me:$LINENO: error: --enable-doscompile option makes sense only under Cygwin or MinGW" >&5
-echo "$as_me: error: --enable-doscompile option makes sense only under Cygwin or MinGW" >&2;}
-   { (exit 1); exit 1; }; } ;;
-     esac
-   fi
+  enable_doscompile=$enableval
 else
   enable_doscompile=no
 fi;
- case "$enable_doscompile" in
-   mingw)
-     case $build in
-       *-mingw*) enable_doscompile=no ;;
-     esac
-     ;;
-   msvc|no) ;;
-   yes) enable_doscompile=mingw ;;
-   *) { { echo "$as_me:$LINENO: error: Invalid value $enable_doscompile for --enable-doscompile.
-		    Try configure --help=recursive." >&5
-echo "$as_me: error: Invalid value $enable_doscompile for --enable-doscompile.
-		    Try configure --help=recursive." >&2;}
+
+  # Check whether --enable-msvc or --disable-msvc was given.
+if test "${enable_msvc+set}" = set; then
+  enableval="$enable_msvc"
+  enable_msvc=$enableval
+else
+  enable_msvc=no
+     if test "$enable_doscompile" = msvc ; then
+       enable_msvc=yes
+     elif test "$enable_doscompile" != no ; then
+       { { echo "$as_me:$LINENO: error: --enable-doscompile=$enable_doscompile not supported anymore." >&5
+echo "$as_me: error: --enable-doscompile=$enable_doscompile not supported anymore." >&2;}
    { (exit 1); exit 1; }; }
-      ;;
-  esac
-  if test "$enable_doscompile" != no ; then
-    { echo "$as_me:$LINENO: DOS compile style is: $enable_doscompile" >&5
-echo "$as_me: DOS compile style is: $enable_doscompile" >&6;}
+     fi
+
+fi;
+
+  if test "$enable_msvc" = yes; then
+    case $build in
+      *-cygwin* | *-mingw*) ;;
+      *) { { echo "$as_me:$LINENO: error: --enable-msvc option makes sense only under Cygwin or MinGW" >&5
+echo "$as_me: error: --enable-msvc option makes sense only under Cygwin or MinGW" >&2;}
+   { (exit 1); exit 1; }; } ;;
+    esac
   fi
 
 
@@ -4274,7 +4272,7 @@ for file in $files; do
 done
 if test $coin_vpath_config = yes; then
   lnkcmd=
-  if test "$enable_doscompile" != no; then
+  if test "$enable_msvc" = yes; then
     lnkcmd=cp
   fi
   case "$CC" in
@@ -4335,9 +4333,6 @@ ABSBUILDDIR="`pwd`"
 echo "$as_me:$LINENO: checking which command should be used to link input files" >&5
 echo $ECHO_N "checking which command should be used to link input files... $ECHO_C" >&6
 coin_link_input_cmd="$LN_S"
-if test "$enable_doscompile" = mingw; then
-  coin_link_input_cmd=cp
-fi
 case "$CC" in
   clang* ) ;;
   cl* | */cl* | CL* | */CL* | icl* | */icl* | ICL* | */ICL*)
