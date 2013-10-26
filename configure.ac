@@ -12,7 +12,7 @@
 
 AC_PREREQ(2.59)
 
-AC_INIT([DataNetlib],[1.2.5],[https://projects.coin-or.org/BuildTools/])
+AC_INIT([DataNetlib],[1.2],[https://projects.coin-or.org/BuildTools/])
 
 AC_COPYRIGHT([
 Copyright 2006 International Business Machines and others.
@@ -30,7 +30,7 @@ AC_CONFIG_SRCDIR(configure.ac)
 # /usr/local.
 AC_PREFIX_DEFAULT([`pwd`])
 
-AC_COIN_PROJECTDIR_INIT(DataNetlib,2:5:1)
+AC_COIN_PROJECTDIR_INIT(DataNetlib)
 
 #############################################################################
 #     We only need automake to generate Makefiles for the distribution      #
