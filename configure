@@ -4250,6 +4250,11 @@ echo "$as_me: error: --enable-doscompile=$enable_doscompile not supported anymor
 
 fi;
 
+  if test "$enable_msvc" = MD; then
+    enable_shared=yes
+    enable_msvc=yes
+  fi
+
   if test "$enable_msvc" = yes; then
     case $build in
       *-cygwin* | *-mingw*) ;;
