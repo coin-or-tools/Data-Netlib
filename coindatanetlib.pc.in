@@ -1,4 +1,5 @@
 prefix=@prefix@
+datarootdir=@datarootdir@
 datadir=@datadir@/coin/Data/Netlib
 
 Name: Netlib
