@@ -2146,8 +2146,10 @@ fi
 # We want --enable-msvc setup and checked
 
 
+
 # This macro should run before the compiler checks (doesn't seem to be
 # sufficient for CFLAGS)
+
 
 
 
@@ -2156,19 +2158,20 @@ fi
 # change default compiler flags (TODO bring back --enable-debug)
 # - disable debugging (remove -g, set -DNDEBUG)
 # - enable exceptions for (i)cl
-if test "$enable_msvc" = yes ; then
-  : ${FFLAGS:=""}
-  : ${FCFLAGS:=""}
-  : ${CFLAGS:="-DNDEBUG -nologo"}
-  : ${CXXFLAGS:="-DNDEBUG -EHsc -nologo"}
-  : ${AR:="lib"}
-  : ${AR_FLAGS:="-nologo -out:"}
-else
-  : ${FFLAGS:=""}
-  : ${FCFLAGS:=""}
-  : ${CFLAGS:="-DNDEBUG"}
-  : ${CXXFLAGS:="-DNDEBUG"}
-fi
+
+  if test "$enable_msvc" = yes ; then
+    : ${FFLAGS:=""}
+    : ${FCFLAGS:=""}
+    : ${CFLAGS:="-DNDEBUG -nologo"}
+    : ${CXXFLAGS:="-DNDEBUG -EHsc -nologo"}
+    : ${AR:="lib"}
+    : ${AR_FLAGS:="-nologo -out:"}
+  else
+    : ${FFLAGS:=""}
+    : ${FCFLAGS:=""}
+    : ${CFLAGS:="-DNDEBUG"}
+    : ${CXXFLAGS:="-DNDEBUG"}
+  fi
 
 ac_aux_dir=
 for ac_dir in "$srcdir" "$srcdir/.." "$srcdir/../.."; do
@@ -2696,7 +2699,7 @@ fi
 rmdir .tst 2>/dev/null
 
 
-# required autoconf version
+# Enforce the required autoconf version
 
 
 
@@ -2708,6 +2711,10 @@ cat >>confdefs.h <<_ACEOF
 #define DATANETLIB_VERSION "$PACKAGE_VERSION"
 _ACEOF
 
+
+# Parse package version, assuming major.minor.release. PACKAGE_VERSION is set
+# by AC_INIT. Force components to 9999 if they're empty; this deals with
+# things like `trunk' and other nonstandard forms.
 
   coin_majorver=`echo $PACKAGE_VERSION | sed -n -e 's/^\([0-9]*\).*/\1/gp'`
   coin_minorver=`echo $PACKAGE_VERSION | sed -n -e 's/^[0-9]*\.\([0-9]*\).*/\1/gp'`
@@ -2731,13 +2738,14 @@ cat >>confdefs.h <<_ACEOF
 _ACEOF
 
 
-  # We use the following variable to have a string with the upper case
-  # version of the project name
+# Create a variable set to the upper case version of the project name
+
   COIN_PRJCT=DATANETLIB
 
-  # Set the project's SVN revision number. The complicated sed expression
-  # (made worse by quadrigraphs) ensures that things like 4123:4168MS end up
-  # as a single number.
+# Set the project's SVN revision number. The complicated sed expression
+# (made worse by quadrigraphs) ensures that things like 4123:4168MS end up
+# as a single number.
+
   # Extract the first word of "svnversion", so it can be a program name with args.
 set dummy svnversion; ac_word=$2
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
@@ -2791,7 +2799,8 @@ _ACEOF
 
 
 
-# Capture libtool library version, if given.
+# Capture the libtool library version, if given.
+
 
 
 
@@ -4284,9 +4293,10 @@ done
 
 
 
-coin_has_zlib=no
 
-# Check whether --enable-zlib was given.
+  coin_has_zlib=no
+
+  # Check whether --enable-zlib was given.
 if test "${enable_zlib+set}" = set; then :
   enableval=$enable_zlib; coin_enable_zlib=$enableval
 else
@@ -4294,22 +4304,15 @@ else
 fi
 
 
-if test x$coin_enable_zlib = xyes; then
-  ac_ext=c
-ac_cpp='$CPP $CPPFLAGS'
-ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
-ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
-ac_compiler_gnu=$ac_cv_c_compiler_gnu
-
-  ac_fn_c_check_header_mongrel "$LINENO" "zlib.h" "ac_cv_header_zlib_h" "$ac_includes_default"
+  if test x$coin_enable_zlib = xyes ; then
+    ac_fn_c_check_header_mongrel "$LINENO" "zlib.h" "ac_cv_header_zlib_h" "$ac_includes_default"
 if test "x$ac_cv_header_zlib_h" = xyes; then :
   coin_has_zlib=yes
 fi
 
 
-
-  if test x$coin_has_zlib = xyes; then
-    { $as_echo "$as_me:${as_lineno-$LINENO}: checking for gzopen in -lz" >&5
+    if test x$coin_has_zlib = xyes ; then
+      { $as_echo "$as_me:${as_lineno-$LINENO}: checking for gzopen in -lz" >&5
 $as_echo_n "checking for gzopen in -lz... " >&6; }
 if ${ac_cv_lib_z_gzopen+:} false; then :
   $as_echo_n "(cached) " >&6
@@ -4346,28 +4349,26 @@ fi
 { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_z_gzopen" >&5
 $as_echo "$ac_cv_lib_z_gzopen" >&6; }
 if test "x$ac_cv_lib_z_gzopen" = xyes; then :
-  :
+  cat >>confdefs.h <<_ACEOF
+#define HAVE_LIBZ 1
+_ACEOF
+
+  LIBS="-lz $LIBS"
+
 else
   coin_has_zlib=no
 fi
 
-  fi
-
-  if test x$coin_has_zlib = xyes; then
+    fi
+    if test x$coin_has_zlib = xyes ; then
 
 
 $as_echo "#define COIN_HAS_ZLIB 1" >>confdefs.h
 
+    fi
   fi
-  ac_ext=c
-ac_cpp='$CPP $CPPFLAGS'
-ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
-ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
-ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
-fi
-
- if test x$coin_has_zlib = xyes; then
+   if test x$coin_has_zlib = xyes; then
   COIN_HAS_ZLIB_TRUE=
   COIN_HAS_ZLIB_FALSE='#'
 else
@@ -4382,14 +4383,14 @@ fi
 #############################################################################
 
 
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether this is a VPATH configuration" >&5
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether this is a VPATH configuration" >&5
 $as_echo_n "checking whether this is a VPATH configuration... " >&6; }
-if test `cd $srcdir ; pwd` != `pwd`; then
-  coin_vpath_config=yes
-else
-  coin_vpath_config=no
-fi
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $coin_vpath_config" >&5
+  if test `cd $srcdir ; pwd` != `pwd`; then
+    coin_vpath_config=yes
+  else
+    coin_vpath_config=no
+  fi
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $coin_vpath_config" >&5
 $as_echo "$coin_vpath_config" >&6; }
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether ln -s works" >&5
@@ -4418,7 +4419,7 @@ fi
 # of files. Avoid adding duplicate file names. (Allowing wild cards makes
 # duplicates far too likely.)
 
-files=`cd $srcdir; ls *.mps.gz`
+files=`cd $srcdir; ls *.mps.gz 2>/dev/null`
 for file in $files; do
   if expr " $EXAMPLE_DIST_FILES " : '.* '"$file"' .*' >/dev/null 2>&1 ; then
     continue ;
@@ -4450,7 +4451,7 @@ ac_config_files="$ac_config_files Makefile coindatanetlib.pc"
 # Finally, let configure write all the output ...
 
 
-cat >confcache <<\_ACEOF
+  cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
 # tests run on this system so they can be shared between configure
 # scripts and configure runs, see configure's option --config-cache.
@@ -5772,9 +5773,9 @@ $as_echo "$as_me: WARNING: unrecognized options: $ac_unrecognized_opts" >&2;}
 fi
 
 
-{ $as_echo "$as_me:${as_lineno-$LINENO}: In case of trouble, first consult the troubleshooting page at https://projects.coin-or.org/BuildTools/wiki/user-troubleshooting" >&5
+  { $as_echo "$as_me:${as_lineno-$LINENO}: In case of trouble, first consult the troubleshooting page at https://projects.coin-or.org/BuildTools/wiki/user-troubleshooting" >&5
 $as_echo "$as_me: In case of trouble, first consult the troubleshooting page at https://projects.coin-or.org/BuildTools/wiki/user-troubleshooting" >&6;}
-{ $as_echo "$as_me:${as_lineno-$LINENO}: Configuration of $PACKAGE_NAME successful" >&5
+  { $as_echo "$as_me:${as_lineno-$LINENO}: Configuration of $PACKAGE_NAME successful" >&5
 $as_echo "$as_me: Configuration of $PACKAGE_NAME successful" >&6;}
 
 
