@@ -14,7 +14,7 @@ AUTOMAKE_OPTIONS = foreign
 
 EXTRA_DIST = $(EXAMPLE_DIST_FILES)
 
-datacoindir = $(datadir)/coin/Data/Netlib
+datacoindir = $(datadir)/Netlib
 
 # If zlib is available, install compressed files. If zlib is not available,
 # install uncompressed copies of compressed files. EXAMPLE_DIST_FILES and

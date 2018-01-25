@@ -1,6 +1,6 @@
 prefix=@prefix@
 datarootdir=@datarootdir@
-datadir=@datadir@/coin/Data/Netlib
+datadir=@datadir@/coin/data/Netlib
 
 Name: Netlib
 Description: Netlib models

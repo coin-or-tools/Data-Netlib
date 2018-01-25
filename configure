@@ -4417,7 +4417,10 @@ fi
 # Get the names of the files and sort them to the various variables. As
 # a convenient side-effect, the loop will remove newlines from the list
 # of files. Avoid adding duplicate file names. (Allowing wild cards makes
-# duplicates far too likely.)
+# duplicates far too likely.) The redirect of stderr on the ls is arguable. It
+# avoids error messages in the configure output if the package maintainer
+# specifies files that don't exist (for example, generic wild card specs
+# that anticipate future growth) but it will hide honest errors.
 
 files=`cd $srcdir; ls *.mps.gz 2>/dev/null`
 for file in $files; do
