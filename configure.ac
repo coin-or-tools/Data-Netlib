@@ -33,7 +33,7 @@ AC_COIN_INITIALIZE(Netlib)
 # --disable-zlib, uncompressed copies of compressed files will be created when
 # make is run.
 
-AC_COIN_CHECK_ZLIB
+AC_COIN_CHK_ZLIB
 
 #############################################################################
 #                        Specify the data files                             #

@@ -3098,7 +3098,6 @@ fi
 
 
 
-
 # If enable-msvc, then test only for MS and Intel (on Windows) C compiler
 # otherwise, test a long list of C compilers that comes into our mind
 
