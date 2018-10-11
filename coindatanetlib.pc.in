@@ -1,6 +1,6 @@
 prefix=@prefix@
 datarootdir=@datarootdir@
-datadir=@datadir@/@PACKAGE_TARNAME@
+datadir=@NETLIB_DATA_PUB@
 
 Name: Netlib
 Description: Netlib models

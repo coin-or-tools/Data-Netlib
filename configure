@@ -661,6 +661,10 @@ CPPFLAGS
 LDFLAGS
 CFLAGS
 CC
+NETLIB_DATA_PUB
+NETLIB_PCFILES_PUB
+NETLIB_CFLAGS_PUB
+NETLIB_LFLAGS_PUB
 MAINT
 MAINTAINER_MODE_FALSE
 MAINTAINER_MODE_TRUE
@@ -3019,6 +3023,20 @@ fi
 
   MAINT=$MAINTAINER_MODE_TRUE
 
+
+
+
+# Initialise variables for Sample. All we're after here is the default data
+# directory for substitution on coindatanetlib.pc.in.
+
+
+  NETLIB_LFLAGS_PUB=""
+
+  NETLIB_CFLAGS_PUB=""
+
+  NETLIB_PCFILES_PUB=""
+
+  NETLIB_DATA_PUB=\${datarootdir}/$PACKAGE_TARNAME
 
 
 

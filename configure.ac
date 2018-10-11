@@ -28,6 +28,11 @@ AC_CONFIG_SRCDIR(configure.ac)
 
 AC_COIN_INITIALIZE(Netlib)
 
+# Initialise variables for Sample. All we're after here is the default data
+# directory for substitution on coindatanetlib.pc.in.
+
+AC_COIN_INIT_LIBVARS([Netlib])
+
 # Check for libz. The hidden assumption is that if libz is present, code will
 # use it to read compressed (.gz) files. If it's not present, or disabled with
 # --disable-zlib, uncompressed copies of compressed files will be created when
