@@ -282,22 +282,6 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AUTOMAKE_OPTIONS = foreign
-
-########################################################################
-#                List files that should be distributed                 #
-########################################################################
-EXTRA_DIST = $(EXAMPLE_DIST_FILES)
-datacoindir = $(pkgdatadir)
-@COIN_HAS_ZLIB_FALSE@datacoin_DATA = $(EXAMPLE_UNCOMP_FILES)
-
-# If zlib is available, install compressed files. If zlib is not available,
-# install uncompressed copies of compressed files. EXAMPLE_DIST_FILES and
-# EXAMPLE_UNCOMP_FILES are identical except that any `.gz' suffixes are
-# stripped from names in EXAMPLE_UNCOMP_FILES. EXAMPLE_CLEAN_FILES (below)
-# is exactly the set of names that have been stripped of `.gz'.
-@COIN_HAS_ZLIB_TRUE@datacoin_DATA = $(EXAMPLE_DIST_FILES)
-pkgconfiglibdir = $(libdir)/pkgconfig
-pkgconfiglib_DATA = coindatanetlib.pc
 pkgdocdir = $(docdir)
 
 # doxydocdir is the top-level directory for doxygen documentation. It holds
@@ -317,6 +301,22 @@ COIN_HAS_LATEX = @COIN_HAS_LATEX_TRUE@TRUE
 # Needless to say, it's important that baredocdir_nosub not be a target for
 # autoconf substitution.
 DOXYTAG_EDIT = sed -e 's|@baredocdir_nosub@|$(datarootdir)/doc|g'
+
+########################################################################
+#                List files that should be distributed                 #
+########################################################################
+EXTRA_DIST = $(EXAMPLE_DIST_FILES)
+datacoindir = $(pkgdatadir)
+@COIN_HAS_ZLIB_FALSE@datacoin_DATA = $(EXAMPLE_UNCOMP_FILES)
+
+# If zlib is available, install compressed files. If zlib is not available,
+# install uncompressed copies of compressed files. EXAMPLE_DIST_FILES and
+# EXAMPLE_UNCOMP_FILES are identical except that any `.gz' suffixes are
+# stripped from names in EXAMPLE_UNCOMP_FILES. EXAMPLE_CLEAN_FILES (below)
+# is exactly the set of names that have been stripped of `.gz'.
+@COIN_HAS_ZLIB_TRUE@datacoin_DATA = $(EXAMPLE_DIST_FILES)
+pkgconfiglibdir = $(libdir)/pkgconfig
+pkgconfiglib_DATA = coindatanetlib.pc
 
 ########################################################################
 #           Build and clean actions                                    #
