@@ -39,6 +39,9 @@ AC_COIN_PROJECTDIR_INIT(DataNetlib)
 # Initialize automake
 AC_COIN_INIT_AUTOMAKE
 
+# Get the name of the C++ compiler and appropriate compiler options
+AC_COIN_PROG_CXX
+
 # check if ZLIB is available, in which case we do not decompress
 AC_COIN_CHECK_GNU_ZLIB
 
