@@ -8,15 +8,13 @@
 
 AUTOMAKE_OPTIONS = foreign
 
-include BuildTools/Makemain.inc
-
 ########################################################################
 #                List files that should be distributed                 #
 ########################################################################
 
 EXTRA_DIST = $(EXAMPLE_DIST_FILES)
 
-datacoindir = $(pkgdatadir)
+datacoindir = $(datadir)/$(PACKAGE_TARNAME)
 
 # If zlib is available, install compressed files. If zlib is not available,
 # install uncompressed copies of compressed files. EXAMPLE_DIST_FILES and
