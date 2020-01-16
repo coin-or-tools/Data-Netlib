@@ -16,8 +16,8 @@
 /bore3d.mps.gz -text svneol=unset#application/x-gzip
 /brandy.mps.gz -text svneol=unset#application/x-gzip
 /capri.mps.gz -text svneol=unset#application/x-gzip
-/coindatanetlib-uninstalled.pc.in -text
 /coindatanetlib.pc.in -text
+/compile -text
 /config.guess -text
 /config.sub -text
 /configure -text

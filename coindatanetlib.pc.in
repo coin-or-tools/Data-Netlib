@@ -1,5 +1,6 @@
 prefix=@prefix@
-datadir=@datadir@/coin/Data/Netlib
+datarootdir=@datarootdir@
+datadir=${datarootdir}/@PACKAGE_TARNAME@
 
 Name: Netlib
 Description: Netlib models
