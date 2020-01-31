@@ -1,10 +1,12 @@
+@COIN_RELOCATABLE_FALSE@prefix=@prefix@
+@COIN_RELOCATABLE_TRUE@prefix=${pcfiledir}/../..
 prefix=@prefix@
 datarootdir=@datarootdir@
 datadir=${datarootdir}/@PACKAGE_TARNAME@
 
 Name: Netlib
 Description: Netlib models
-URL: https://projects.coin-or.org/svn/Data/Netlib
+URL: https://github.com/coin-or-tools/Data-Netlib
 Version: @PACKAGE_VERSION@
 Libs:
 Cflags:

@@ -11,7 +11,7 @@
 #############################################################################
 
 AC_INIT([Netlib],[trunk],[buildtools@list.coin-or.org],[coin-or-netlib],
-	[https://projects.coin-or.org/BuildTools/])
+	[https://github.com/coin-or-tools/Data-Netlib/])
 
 AC_COPYRIGHT([
 Copyright 2006 International Business Machines and others.
