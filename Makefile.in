@@ -264,9 +264,8 @@ top_srcdir = @top_srcdir@
 AUTOMAKE_OPTIONS = foreign
 
 ########################################################################
-#                List files that should be distributed                 #
+#                Set up installation and .pc file                      #
 ########################################################################
-EXTRA_DIST = $(EXAMPLE_DIST_FILES)
 datacoindir = $(datadir)/$(PACKAGE_TARNAME)
 @COIN_HAS_ZLIB_FALSE@datacoin_DATA = $(EXAMPLE_UNCOMP_FILES)
 
