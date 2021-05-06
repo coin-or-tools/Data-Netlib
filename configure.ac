@@ -9,8 +9,7 @@
 #                       Names and other basic things                        #
 #############################################################################
 
-AC_INIT([Netlib],[trunk],[buildtools@list.coin-or.org],[coin-or-netlib],
-	[https://github.com/coin-or-tools/Data-Netlib/])
+AC_INIT([Netlib],[trunk],[https://github.com/coin-or-tools/Data-Netlib/issues/new],[coin-or-netlib],[https://github.com/coin-or-tools/Data-Netlib/])
 
 AC_COPYRIGHT([
 Copyright 2006 International Business Machines and others.
