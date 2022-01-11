@@ -2365,7 +2365,7 @@ if test x$prefix = xNONE; then
 else
   full_prefix=$prefix
 fi
-full_prefix=`cd $full_prefix ; pwd`
+
 
 abs_lib_dir=$full_prefix/lib
 
