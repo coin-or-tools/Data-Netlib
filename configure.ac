@@ -2,14 +2,13 @@
 # All Rights Reserved.
 # This file is distributed under the Eclipse Public License.
 
-
 # Author:  Andreas Waechter            IBM    2006-04-13
 
 #############################################################################
 #                       Names and other basic things                        #
 #############################################################################
 
-AC_INIT([Netlib],[devel],[https://github.com/coin-or-tools/Data-Netlib/issues/new],[coin-or-netlib],[https://github.com/coin-or-tools/Data-Netlib/])
+AC_INIT([Netlib],[1.3.0],[https://github.com/coin-or-tools/Data-Netlib/issues/new],[coin-or-netlib],[https://github.com/coin-or-tools/Data-Netlib/])
 
 AC_COPYRIGHT([
 Copyright 2006 International Business Machines and others.
@@ -50,4 +49,3 @@ AC_CONFIG_FILES([Makefile coindatanetlib.pc])
 # Finally, let configure write all the output ...
 
 AC_COIN_FINALIZE
-
