@@ -8,10 +8,8 @@
 AUTOMAKE_OPTIONS = foreign
 
 ########################################################################
-#                List files that should be distributed                 #
+#                Set up installation and .pc file                      #
 ########################################################################
-
-EXTRA_DIST = $(EXAMPLE_DIST_FILES)
 
 datacoindir = $(datadir)/$(PACKAGE_TARNAME)
 
