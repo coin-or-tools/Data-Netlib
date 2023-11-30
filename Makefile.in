@@ -286,7 +286,6 @@ pkgconfiglib_DATA = coindatanetlib.pc
 # We always need to clean these files, which are uncompressed copies of
 # compressed files, created when zlib is not available.
 CLEANFILES = $(EXAMPLE_CLEAN_FILES) $(am__append_1)
-@COIN_VPATH_BUILD_TRUE@MORE_PHONY = $(EXAMPLE_DIST_FILES)
 all: all-am
 
 .SUFFIXES:
@@ -511,6 +510,8 @@ test:
 @COIN_VPATH_BUILD_TRUE@$(EXAMPLE_DIST_FILES):
 @COIN_VPATH_BUILD_TRUE@	@test -f $@  || $(LN_S) $(srcdir)/$@ $@
 
+@COIN_VPATH_BUILD_TRUE@.PHONY: $(EXAMPLE_DIST_FILES)
+
 ########################################################################
 #           Extra uninstall actions                                    #
 ########################################################################
@@ -533,8 +534,6 @@ uninstall-local:
 
 $(EXAMPLE_CLEAN_FILES):
 	gzip -d -c $(srcdir)/$@.gz > $@
-
-.PHONY: $(MORE_PHONY)
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
